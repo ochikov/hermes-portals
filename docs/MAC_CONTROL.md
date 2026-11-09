@@ -83,8 +83,11 @@ the Portals page, or `/static/hand-demo.html?gesture=tap`. Gesture Lab animates 
 illustrated hand with joint landmarks. Select a gesture and play it, pause,
 scrub or choose a numbered step. It has English/Bulgarian instructions and
 stops playback when hidden. Reduced-motion users get still poses by default.
-The guide requests no camera permission and sends no input; the illustrations
-are not recordings or evidence of live gesture accuracy.
+The illustrated examples request no camera permission and send no input; they
+are not recordings or evidence of live gesture accuracy. The same page also has
+an optional live-camera **practice** area for card handoff. It uses the browser
+recognizer, not native Mac input, and checks that native capture is stopped.
+Mouse/touch and keyboard practice are available with the camera off.
 
 For a physical trial, open `/static/gesture-test.html` on the localhost Portals
 companion. It has an inert click target, a scrollable panel and visible counters.

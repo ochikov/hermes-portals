@@ -10,7 +10,7 @@ not part of the release.
 | --- | --- |
 | Clean source setup, pinned companion dependencies and MediaPipe assets | Passed on macOS Apple silicon |
 | Python suite in that clean environment | 22 passed |
-| JavaScript suite, including Gesture Lab | 10 passed |
+| JavaScript suite, including Gesture Lab | 17 passed |
 | Swift compile and pure recognizer tests from the clean source | 212 assertions passed; no OS events |
 | Hermes 0.20.5 Plugin Doctor | Discovery, import and two tool registrations passed |
 | Hermes 0.23.0 catalog validator preflight | 15 checks passed; safe; no warnings |
@@ -23,8 +23,18 @@ gesture recognizer by a test and produces exactly one transfer signal. A second
 test checks that all four illustrated hands remain finite and within the preview.
 These tests do not send a transfer or measure a physical hand. Browser checks
 cover the four modes, numbered steps, English/Bulgarian, replay and a 390-pixel
-mobile viewport without horizontal overflow. This guide has no camera or input
-API and is not a substitute for the physical trials below.
+mobile viewport without horizontal overflow. These illustrated examples do not
+access the camera and are not a substitute for the physical trials below.
+
+The live practice area has additional tests for a successful camera gesture,
+grabbing over the card, release boundaries, hand loss, multiple-hand cancellation,
+brief tracking recovery, separate pointer/keyboard counters, video crop alignment,
+and camera cleanup. A raw preview consumer cannot call the real handoff callback.
+Browser checks exercised keyboard and mouse transfer, state changes and return.
+The user tried the live camera and then recorded one successful gesture in a
+separate local recording studio using the same recognizer and practice model.
+That privacy-blurred clip is included under `docs/media`; its virtual phone is
+explicitly labelled and is not evidence of a physical device transfer.
 
 ## Automated coverage
 

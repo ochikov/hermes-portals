@@ -14,12 +14,30 @@ On macOS, an optional native controller also turns hand gestures into pointer
 movement, clicks, scrolling and switching running apps. It continues tracking
 while another app is in front. [Mac setup and gesture guide](docs/MAC_CONTROL.md).
 
-**Learn the gestures first.** Open **Watch the hand demo** beside the camera to
-try Gesture Lab: an illustrated 21-joint hand demonstrates phone handoff, index
-tapping, scrolling and app switching. Play, pause, scrub or jump between steps;
-instructions are in English and Bulgarian. The guide runs without a camera or
-paired device and never sends input or transfers real content. It is explicitly
-labelled **Simulation**, separate from live tracking.
+**See it move.** This short clip captures a real hand performing the Gesture Lab
+exercise. Camera imagery was strongly blurred **before recording**; joint
+landmarks and the interface remain visible. No audio was recorded.
+
+[![Live hand-tracking exercise — watch the MP4](docs/media/hermes-portals-demo.gif)](docs/media/hermes-portals-demo.mp4)
+
+[Watch the MP4](docs/media/hermes-portals-demo.mp4) · [Recording details](docs/media/README.md)
+
+The phone in this clip is a **virtual practice target**, not a second physical
+device. The clip demonstrates live recognition and page-local state preservation;
+it does not demonstrate native Mac input or the physical QR/handoff workflow.
+
+**Try it yourself.** Open **Try with your hand** beside the camera. Gesture Lab
+offers opt-in live video with joint tracking, a sample card to grab and carry into
+a portal, and immediate feedback. Mouse, touch and keyboard practice work without
+a camera or paired device. Camera, pointer and keyboard successes are counted
+separately. The sample card never mutates a real artifact or emits OS input.
+
+The collapsible illustrated guide still demonstrates all four gestures with
+English/Bulgarian instructions, playback controls and numbered steps. Camera
+practice requires a signed-in localhost owner page to check that native capture
+is stopped. Escape, switching away or closing the page stops its camera. The
+plugin itself does not record video; the clip above was made in a separate,
+local recording session expressly for this repository.
 
 [Preview the illustrated hand guide](docs/screenshots/hand-demo.png).
 

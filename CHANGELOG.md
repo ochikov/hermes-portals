@@ -10,6 +10,10 @@
 - Gesture Lab: an animated 21-joint hand, four guided gestures, English/Bulgarian
   instructions, playback controls and static step selection. No camera or OS
   input is used by the illustration.
+- Live Gesture Lab practice: opt-in camera, a draggable sample card, portal
+  feedback, preserved local state, and mouse/touch/keyboard alternatives.
+- A short, privacy-blurred recording of a real hand gesture, with an animated
+  README preview. Its virtual-phone practice scope is explicitly labelled.
 - Explicit source setup, hash-locked dependencies, MIT license and security
   disclosures; clean source checks and CI for companion/native/catalog validation.
 

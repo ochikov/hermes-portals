@@ -5,6 +5,7 @@
   <meta name="referrer" content="no-referrer">
   <title>Hermes Portals · Gesture Lab</title>
   <link rel="stylesheet" href="/static/hand-demo.css">
+  <link rel="stylesheet" href="/static/hand-practice.css">
   <script type="module" src="/static/hand-demo.mjs"></script>
 </head>
 <body>
@@ -17,6 +18,32 @@
       <div><p class="eyebrow">GESTURE LAB / 01</p><h1 data-copy="title">A little motion.<br>A new way to move.</h1></div>
       <p class="intro-note" data-copy="intro">Follow the illustrated hand. Learn the movement before you turn on your camera.</p>
     </section>
+    <section class="practice" id="practice" aria-labelledby="practice-title">
+      <div class="practice-top"><div><p class="eyebrow" data-practice="eyebrow">YOUR HAND / YOUR PLAYGROUND</p><h2 id="practice-title" data-practice="title">Pick up a little world.</h2></div><span class="practice-signal" id="practice-signal">CAMERA OFF</span></div>
+      <div class="practice-actions"><button type="button" class="camera-button" id="practice-camera">Start camera</button><button type="button" id="practice-mouse" aria-pressed="true" data-practice="mouse">Mouse / touch</button><span class="privacy-note" data-practice="privacy">Local video · no recording · Esc to stop</span></div>
+      <div class="practice-stage" id="practice-stage" data-phase="ready">
+        <video class="practice-video" id="practice-video" autoplay muted playsinline hidden></video>
+        <canvas class="practice-joints" id="practice-joints" aria-hidden="true"></canvas>
+        <div class="practice-caption"><span id="practice-source"></span><span data-practice="local">PRACTICE / THIS PAGE ONLY</span></div>
+        <div class="practice-path" aria-hidden="true">→ →</div>
+        <div class="practice-portal" aria-hidden="true"><span data-practice="phone">PHONE</span></div>
+        <div class="practice-card" id="practice-card" role="button" tabindex="0" aria-describedby="practice-instruction" data-offline="true">
+          <small data-practice="portable">INTERACTIVE TOOL</small><h3 data-practice="cardTitle">A resilient service</h3>
+          <svg viewBox="0 0 170 63" aria-hidden="true"><line x1="20" y1="31" x2="65" y2="31"/><line x1="65" y1="31" x2="115" y2="13"/><line x1="65" y1="31" x2="115" y2="50"/><line x1="115" y1="13" x2="153" y2="31"/><line x1="115" y1="50" x2="153" y2="31"/><circle cx="20" cy="31" r="6"/><circle cx="65" cy="31" r="7"/><circle class="server-a" cx="115" cy="13" r="7"/><circle cx="115" cy="50" r="7"/><circle cx="153" cy="31" r="6"/></svg>
+          <p id="practice-card-state">Server A · OFFLINE</p>
+        </div>
+        <div class="practice-pointer" id="practice-pointer" hidden></div>
+        <div class="practice-confetti" id="practice-confetti" aria-hidden="true"></div>
+        <div class="practice-stage-tip" id="practice-stage-tip"></div>
+      </div>
+      <div class="practice-feedback"><div role="status" aria-live="polite" aria-atomic="true"><h3 id="practice-feedback"></h3><p id="practice-instruction"></p></div><div class="practice-score"><strong id="practice-score">0</strong><span id="practice-score-label"></span></div></div>
+      <div class="practice-hold" aria-hidden="true"><span id="practice-progress"></span></div>
+      <div class="practice-bottom"><button type="button" id="practice-state"></button><button type="button" id="practice-reset"></button><span class="practice-result" id="practice-result"></span></div>
+      <p class="practice-error" id="practice-error" role="alert" hidden></p>
+      <p class="practice-permission" data-practice="permission">The camera is optional. This exercise moves a sample card inside this page; it does not send it to a real phone or control your Mac.</p>
+      <span id="practice-engine-status" hidden></span>
+    </section>
+    <details class="reference-guide" id="reference-guide"><summary data-copy="reference">See illustrated examples of all four gestures</summary>
     <nav class="mode-tabs" aria-label="Gesture examples" id="modes">
       <button type="button" data-mode="transfer" aria-pressed="true"><span>↗</span><b data-copy="transfer">Send to phone</b></button>
       <button type="button" data-mode="tap" aria-pressed="false"><span>◎</span><b data-copy="tap">Index tap</b></button>
@@ -33,7 +60,8 @@
       <div class="playback"><button id="play" type="button" class="play-button">▶ <span data-copy="play">Play demo</span></button><label class="timeline"><span class="sr-only" data-copy="timeline">Animation position</span><input id="timeline" type="range" min="0" max="6.8" step="0.01" value="0" aria-label="Animation position"></label><span id="time" class="time">0.0 / 6.8 s</span><button id="replay" type="button" class="replay" data-copy="replay">↺ Replay</button></div>
       <p class="motion-note" id="motion-note" hidden data-copy="motionNote">Reduced motion is on. Select a numbered step to view a still pose, or choose Play demo.</p>
     </section>
-    <footer><p data-copy="disclaimer">This is a visual guide. It does not access your camera, recognize gestures, transfer content or control your Mac.</p><a href="/" data-copy="back">← Back to Portals</a></footer>
+    </details>
+    <footer><p data-copy="disclaimer">Practice here, then return to Portals to send a real tool between paired devices.</p><a href="/" data-copy="back">← Back to Portals</a></footer>
   </main>
 </body>
 </html>

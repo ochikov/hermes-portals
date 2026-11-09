@@ -1,14 +1,16 @@
 import {BONES,MODES,DURATION,STEP_TIMES,sampleGesture} from './hand-demo-motion.mjs';
+import {mountPractice} from './hand-practice.mjs';
 
 const COPY={
-  badge:['SIMULATION','СИМУЛАЦИЯ'],title:['A little motion.\nA new way to move.','Един жест.\nНови възможности.'],
-  intro:['Follow the illustrated hand. Learn the movement before you turn on your camera.','Проследи анимираната ръка. Виж как се прави жестът, преди да включиш камерата.'],
+  badge:['PLAYGROUND','ПОЛЕ ЗА ИГРА'],title:['Don’t watch.\nMake it move.','Раздвижи го.\nС твоята ръка.'],
+  intro:['Your camera, your hand, a tiny world to move. Try a real gesture — or grab the card with your mouse.','Твоята камера, твоята ръка и малък свят за пренасяне. Пробвай с истински жест или хвани картата с мишката.'],
   transfer:['Send to phone','Към телефона'],tap:['Index tap','Тап с показалец'],scroll:['Scroll','Скрол'],switch:['Switch apps','Смяна на апове'],
   illustration:['ILLUSTRATED HAND · NO CAMERA FEED','СИМУЛИРАНА РЪКА · БЕЗ ВИДЕО'],landmarks:['21 illustrated joints','21 очертани стави'],
   resultLabel:['DEMO RESULT','РЕЗУЛТАТ В ДЕМОТО'],play:['Play demo','Пусни демото'],pause:['Pause','Пауза'],replay:['↺ Replay','↺ Отначало'],
   timeline:['Animation position','Позиция в анимацията'],
   motionNote:['Reduced motion is on. Select a numbered step to view a still pose, or choose Play demo.','Намалените анимации са включени. Избери стъпка за неподвижен пример или пусни демото.'],
-  disclaimer:['This is a visual guide. It does not access your camera, recognize gestures, transfer content or control your Mac.','Това е визуално ръководство. То не включва камерата, не разпознава жестове, не прехвърля съдържание и не управлява Mac-а.'],
+  disclaimer:['Practice here, then return to Portals to send a real tool between paired devices.','Упражнявай се тук, после се върни в Portals за истински трансфер между свързаните устройства.'],
+  reference:['See illustrated examples of all four gestures','Виж анимирани примери за четирите жеста'],
   back:['← Back to Portals','← Обратно към Portals'],phone:['PHONE','ТЕЛЕФОН'],click:['Click here','Кликни тук'],
   clicked:['1 demo click','1 демо клик'],step:['STEP','СТЪПКА'],modes:['Gesture examples','Примери за жестове'],
   steps:['Jump to a step','Избери стъпка'],canvas:['Illustrated hand with joint landmarks; the current movement is described beside it.','Анимирана ръка с очертани стави. До нея е описана текущата стъпка.'],
@@ -74,7 +76,7 @@ const W=canvas.width,H=canvas.height;
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
 const query=new URLSearchParams(location.search);
 let mode=MODES.includes(query.get('gesture'))?query.get('gesture'):'transfer';
-let language='en',time=0,playing=false,frame=null,last=null,previousText='';
+let language='en',time=0,playing=false,frame=null,last=null,previousText='',practice=null;
 try {if(localStorage.getItem('portals-gesture-language')==='bg')language='bg';}catch{}
 const tr=pair=>pair[language==='bg'?1:0];
 const text=(key)=>tr(COPY[key]);
@@ -207,7 +209,7 @@ function languageChanged(){
   $('timeline').setAttribute('aria-label',text('timeline'));$('modes').setAttribute('aria-label',text('modes'));
   $('steps').setAttribute('aria-label',text('steps'));canvas.setAttribute('aria-label',text('canvas'));
   document.querySelector('.demo-card').setAttribute('aria-label',text('region'));
-  updatePlay();paint();
+  updatePlay();paint();practice?.translate();
 }
 for(let i=0;i<4;i++){
   const button=document.createElement('button');button.type='button';
@@ -231,4 +233,8 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape')pause();});
 window.addEventListener('pagehide',pause);
 motion.addEventListener('change',()=>{$('motion-note').hidden=!motion.matches;if(motion.matches)pause();});
 $('motion-note').hidden=!motion.matches;
-languageChanged();if(!motion.matches&&!document.hidden)play();
+const reference=$('reference-guide');
+reference.open=MODES.includes(query.get('gesture'));
+reference.addEventListener('toggle',()=>{if(reference.open){practice?.stop();if(!motion.matches&&!document.hidden)play();}else pause();});
+practice=mountPractice({getLanguage:()=>language,beforeCamera:()=>{pause();reference.open=false;}});
+languageChanged();if(reference.open&&!motion.matches&&!document.hidden)play();

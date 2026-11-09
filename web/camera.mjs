@@ -5,8 +5,8 @@ const CONNECTIONS = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],
   [13,17],[0,17],[17,18],[18,19],[19,20]];
 
 export class HandCamera {
-  constructor({video,canvas,status,pointer,onThrow,enabled,onStopped}) {
-    Object.assign(this,{video,canvas,status,pointer,onThrow,enabled,onStopped});
+  constructor({video,canvas,status,pointer,onThrow,enabled,onStopped,onFrame,onError}) {
+    Object.assign(this,{video,canvas,status,pointer,onThrow,enabled,onStopped,onFrame,onError});
     this.gesture = new ThrowGesture(); this.generation = 0; this.active = false;
     this.lastFrame = -1; this.lastInference = 0; this.lastThrow = false;
   }
@@ -22,7 +22,7 @@ export class HandCamera {
     if (generation !== this.generation) return;
     const tracker = await HandLandmarker.createFromOptions(files, {
       baseOptions: {modelAssetPath:'/static/vendor/hand_landmarker.task',delegate:'CPU'},
-      runningMode:'VIDEO', numHands:1,
+      runningMode:'VIDEO', numHands:this.onFrame?2:1,
       minHandDetectionConfidence:.65, minHandPresenceConfidence:.65, minTrackingConfidence:.65,
     });
     if (generation !== this.generation) { tracker.close(); return; }
@@ -33,6 +33,9 @@ export class HandCamera {
       stream = await navigator.mediaDevices.getUserMedia({audio:false,video:{width:{ideal:640},height:{ideal:480},facingMode:'user'}});
       if (generation !== this.generation) { stream.getTracks().forEach(t=>t.stop()); return; }
       this.stream = stream; this.video.srcObject = stream; await this.video.play();
+      stream.getVideoTracks().forEach(track=>track.addEventListener('ended',()=>{
+        if(generation===this.generation){this.stop();this.onError?.(new Error('Camera stream ended'));}
+      },{once:true}));
     } catch (error) { if(generation !== this.generation) return; this.stop(); throw error; }
     if (generation !== this.generation) return;
     this.active = true; this.lastFrame = -1; this.gesture.reset();
@@ -53,8 +56,13 @@ export class HandCamera {
       if (this.video.readyState >= 2 && this.video.currentTime !== this.lastFrame && time-this.lastInference > 65) {
         this.lastFrame = this.video.currentTime; this.lastInference = time;
         const result = this.tracker.detectForVideo(this.video,time);
-        const landmarks = result.landmarks[0], point = handPoint(landmarks);
+        const landmarks = this.onFrame&&result.landmarks.length!==1?null:result.landmarks[0], point = handPoint(landmarks);
         this.draw(landmarks);
+        // Raw preview consumers never enter the real handoff branch below.
+        if(this.onFrame){
+          this.onFrame({time,landmarks,point,hands:result.landmarks.length});
+          this.frame=requestAnimationFrame(next=>this.tick(next));return;
+        }
         const progress = this.gesture.update({time,visible:!!point,...point,enabled:this.enabled()});
         if (point) {
           this.pointer.hidden = false;
@@ -72,13 +80,14 @@ export class HandCamera {
         if (progress.thrown) Promise.resolve(this.onThrow()).catch(error=>{this.status.textContent=error.message;});
       }
     } catch (error) {
-      this.stop(); this.status.textContent = `Hand tracking stopped: ${error.message}`; return;
+      this.stop(); this.status.textContent = `Hand tracking stopped: ${error.message}`;this.onError?.(error); return;
     }
     this.frame = requestAnimationFrame(next=>this.tick(next));
   }
   draw(landmarks) {
     const canvas=this.canvas, ctx=canvas.getContext('2d');
-    const width=canvas.width=640, height=canvas.height=480;
+    const width=canvas.width=this.onFrame?(this.video.videoWidth||640):640;
+    const height=canvas.height=this.onFrame?(this.video.videoHeight||480):480;
     ctx.clearRect(0,0,width,height);
     if (!landmarks) return;
     ctx.strokeStyle='#8eeec8';ctx.fillStyle='#8eeec8';ctx.lineWidth=3;
