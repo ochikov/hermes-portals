@@ -31,6 +31,6 @@ reproduction with synthetic data. No paid bounty or response SLA is offered.
   setup fetches the pinned npm package and checksum-verified official Google
   model; optional native control compiles the Swift sources locally.
 
-See [README disclosures](README.md#access-and-network-disclosure) for storage,
+See [README disclosures](README.md#before-you-install) for storage,
 subprocesses, setup downloads and lifecycle details. Updates use a new reviewed
 catalog commit; the plugin never updates itself.
