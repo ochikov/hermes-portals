@@ -64,9 +64,10 @@ cd "${HERMES_HOME:-$HOME/.hermes}/plugins/hermes-portals"
 ```
 
 For a named Hermes profile, use its plugin directory instead of the default
-path above. The install output identifies the location. Setup is an explicit
-step: installing/enabling the adapter does not download assets, start a server,
-open a camera or grant OS permissions.
+path above. The install output identifies the location. Hermes may offer to
+install the declared Node dependency; setup still completes the isolated Python
+environment and verified camera assets. Installing/enabling the adapter never
+starts a server, opens a camera or grants OS permissions.
 
 To include Mac gesture control, use `./scripts/setup.sh --with-mac` instead.
 It builds the Swift source locally and runs pure recognizer checks. No prebuilt
