@@ -44,7 +44,7 @@ In a fresh Hermes conversation after enabling/updating the plugin, ask:
 and handoff. It reads the current workspace revision before every mutation.
 The companion must be running for browser delivery, and the phone must be
 paired and online for handoff. Tool creation itself can happen while stopped.
-See [the portable tool contract](docs/PORTABLE_TOOLS.md) for payload examples,
+See [the portable tool contract](PORTABLE_TOOLS.md) for payload examples,
 supported calculations and extension points.
 
 Ask Hermes: “Use Portals to disable Server A in the demo diagram and send it to
