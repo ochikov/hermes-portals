@@ -81,7 +81,7 @@ installed into Hermes's Python environment. The adapter itself is stdlib-only.
 For a local development checkout, install that directory with Hermes instead:
 
 ```bash
-hermes plugins install /absolute/path/to/hermes-portals
+hermes plugins install file:///absolute/path/to/hermes-portals
 hermes plugins validate /absolute/path/to/hermes-portals --install-deps
 hermes plugins enable hermes-portals --no-allow-tool-override
 ```

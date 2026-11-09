@@ -34,8 +34,6 @@ jobs:
   hermes:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      HERMES_HOME: ${{ runner.temp }}/portals-hermes-home
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -49,4 +47,6 @@ jobs:
       - name: Install Hermes 0.23.0 from its committed lock
         run: uv sync --project hermes-validator --frozen --no-dev --python 3.14
       - name: Validate the clean plugin source before downloading assets
+        env:
+          HERMES_HOME: ${{ runner.temp }}/portals-hermes-home
         run: hermes-validator/.venv/bin/hermes plugins validate "$GITHUB_WORKSPACE/plugin" --install-deps
