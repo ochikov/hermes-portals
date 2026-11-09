@@ -1,0 +1,12 @@
+name: hermes-portals
+version: "0.3.0"
+description: "Portable diagrams, checklists and calculators with device handoff, plus an optional local Mac camera controller for cursor, click, scroll and app switching."
+requires_hermes: ">=0.20.5"
+python_runtime: external
+python_dependencies: []
+requires_env: []
+provides_tools:
+  - portals_diagram
+  - portals_app
+provides_hooks: []
+capabilities: []

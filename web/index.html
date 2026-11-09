@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hermes Portals</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <header class="topbar"><a class="brand" href="/" aria-label="Hermes Portals"><span class="brand-mark">◒</span> HERMES <b>PORTALS</b></a><span id="connection" class="connection">Connecting</span></header>
+    <section id="welcome" class="welcome" hidden>
+      <span class="eyebrow">YOUR SCREENS, ONE OBJECT</span><h1>Pick up where<br>you left it.</h1>
+      <p id="welcome-message">Open a laptop invitation from Hermes, or scan the laptop's pairing QR code.</p>
+      <form id="pair-form" hidden><label for="phone-name">Name this phone</label><input id="phone-name" maxlength="40" value="My phone" autocomplete="off"><button type="submit" class="primary">Connect to Portals</button></form>
+      <code>/portals open</code>
+    </section>
+    <div id="room" hidden>
+      <section class="intro"><div><span class="eyebrow" id="device-label">LAPTOP / WORKSPACE</span><h1>Your tools.<br>Any screen.</h1><p>Pick up an interactive tool. Every change comes with it.</p></div><div class="session-meta"><span id="phone-status">No phone paired</span><span id="revision">Revision 1</span></div></section>
+      <section id="network-notice" class="network-notice" hidden>Local network prototype · use trusted Wi-Fi. This connection uses HTTP.</section>
+      <section id="library-section" class="library-section" hidden aria-label="Saved tools">
+        <div class="library-heading"><span class="eyebrow">YOUR SAVED TOOLS</span><span class="hint">Opening a tool brings it to the laptop. Changes stay saved.</span></div>
+        <nav id="library" class="library" aria-label="Choose a saved tool"></nav>
+        <div class="create-tools"><span>Try a new tool</span><button type="button" data-template="diagram">+ Diagram</button><button type="button" data-template="checklist">+ Checklist</button><button type="button" data-template="calculator">+ Calculator</button><span id="library-count"></span></div>
+        <details class="hermes-help"><summary>Create your own with Hermes</summary><p>In a fresh Hermes conversation, ask:</p><blockquote>“Create a Portals checklist for my project launch.”</blockquote><blockquote>“Create a Portals calculator for team size × working days × daily cost.”</blockquote><p>Hermes can create, edit, open and transfer your saved tools. Start the companion with <code>/portals start</code> and pair your phone once.</p></details>
+      </section>
+      <section class="workspace">
+        <div id="diagram-card" class="diagram-card">
+          <div class="diagram-header"><div><span class="eyebrow" id="tool-kind">INTERACTIVE DIAGRAM · SIMULATION</span><h2 id="diagram-title">A resilient service</h2></div><span id="artifact-id" class="artifact-id"></span></div>
+          <div class="artifact-body">
+          <div id="diagram-view"><div class="canvas-wrap"><svg id="diagram" role="img" aria-label="Interactive service diagram"></svg></div>
+          <p id="route-status" class="route-status" role="status"></p>
+          <div id="node-buttons" class="node-buttons" aria-label="Select a diagram node"></div>
+          <div class="node-actions"><span id="selected-label"></span><button id="toggle-node" type="button">Simulate failure</button><button id="restore" type="button" class="quiet">Restore all</button></div>
+          </div>
+          <div id="tool-view" class="tool-view" hidden></div>
+          <div id="away" class="away" hidden><div class="portal-ring"></div><h2 id="away-title">On your phone</h2><p>The tool keeps its state.<br>Continue on the other screen.</p><button id="recall" type="button">Bring it here</button></div>
+          </div>
+        </div>
+        <aside class="side-panel">
+          <section id="owner-controls" hidden>
+            <div class="panel-heading"><span class="eyebrow">01 / CONNECT</span><button id="pair-toggle" type="button" class="quiet">New QR</button></div>
+            <div id="qr-box" class="qr-box" hidden><img id="qr-image" alt="Scan to pair this phone with Portals" width="184" height="184"><p id="qr-expiry"></p><p id="qr-hint">Scan with your phone's camera.</p><a id="pair-link" target="_blank" rel="noreferrer">Pairing link</a></div>
+            <button id="revoke" type="button" class="quiet" hidden>Disconnect phone</button>
+            <hr>
+            <span class="eyebrow">02 / PORTALS CAMERA</span>
+            <p class="gesture-instructions">Pinch on the left. Hold. Move right and release into the portal.</p>
+            <div id="camera-stage" class="camera-stage"><video id="camera" autoplay playsinline muted></video><canvas id="hand-overlay" width="640" height="480"></canvas><div class="camera-portal"><span>PHONE<br>→</span></div><span id="hand-pointer" hidden></span><span id="camera-placeholder">Your camera stays local</span></div>
+            <button id="camera-toggle" type="button">Enable webcam</button><p id="gesture-status" class="hint" role="status">Video is processed on this laptop. No frames are uploaded or saved.</p>
+            <section id="mac-control" class="mac-control" hidden>
+              <hr><span class="eyebrow">03 / MAC CONTROL</span><h2>Beyond this window.</h2>
+              <p class="gesture-instructions">Point to move. Bend and straighten your index finger to click, or choose pinch in the controller. Two fingers scroll; an open-palm swipe switches apps.</p>
+              <p id="mac-status" class="mac-status" role="status">Checking controller…</p>
+              <button id="mac-open" type="button" class="full">Open Mac controller</button>
+              <button id="mac-stop" type="button" class="full" disabled>Stop Mac control</button>
+              <p class="hint">Choose Preview or Mac control in the app. Escape stops control. The Portals camera pauses while the Mac controller uses the camera.</p>
+            </section>
+          </section>
+          <section id="phone-controls" hidden><span class="eyebrow">PAIRED PHONE</span><h2>Your next screen.</h2><p>Use the tool here, then send it back. Every change stays with it.</p></section>
+          <hr><button id="handoff" class="primary full" type="button">Send to phone →</button><p class="hint">The button and camera gesture transfer the same object.</p>
+        </aside>
+      </section>
+      <footer><span>HERMES PORTALS / PROTOTYPE 0.3</span><span id="transport">Waiting for live connection</span></footer>
+    </div>
+    <div id="notice" class="notice" role="alert" hidden></div>
+  </main>
+  <script type="module" src="/static/app.mjs"></script>
+</body>
+</html>

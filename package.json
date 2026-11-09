@@ -1,0 +1,8 @@
+{
+  "name": "hermes-portals",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node --test tests/*.test.mjs", "assets": "python3 scripts/prepare_assets.py"},
+  "dependencies": {"@mediapipe/tasks-vision": "0.10.32"}
+}

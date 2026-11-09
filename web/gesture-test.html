@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portals · Тест на жестове</title>
+  <link rel="stylesheet" href="/static/gesture-test.css">
+  <script type="module" src="/static/gesture-test.mjs"></script>
+</head>
+<body>
+  <header><span>HERMES PORTALS / MAC GESTURES</span><label class="language">Language / Език <select id="test-language" aria-label="Language / Език"><option value="en">English</option><option value="bg" selected>Български</option></select></label><span id="native-status">Проверявам контролера…</span></header>
+  <main>
+    <div class="intro"><div><h1><span data-en="Try it with your hand.">Пробвай с ръка.</span></h1><p><span data-en="Choose Start Mac control, then hold an open palm still for one second. Leave the mouse and trackpad alone during the trial.">Избери „Управлявай Mac“ и задръж отворена длан за секунда. После остави мишката и тракпада.</span></p></div><strong class="escape"><span data-en="Esc → stop">Esc → стоп</span></strong></div>
+    <section class="metrics" aria-label="Резултати от тази проба" data-en-aria="Results from this trial">
+      <div><span><span data-en="TARGET CLICKS">КЛИКОВЕ В ЦЕЛТА</span></span><strong id="click-count">0</strong></div>
+      <div><span><span data-en="SCROLL EVENTS">СКРОЛ СЪБИТИЯ</span></span><strong id="wheel-count">0</strong></div>
+      <div><span><span data-en="FURTHEST SCROLL">НАЙ-ДАЛЕЧЕН СКРОЛ</span></span><strong id="scroll-max">0 px</strong></div>
+      <div><span><span data-en="FOCUS LEAVE / RETURN">НАПУСКАНЕ / ВРЪЩАНЕ НА ФОКУСА</span></span><strong id="focus-count">0 / 0</strong></div>
+    </section>
+    <div class="tests">
+      <section><h2><span data-en="1 / Click">1 / Клик</span> <small id="click-gesture-name"></small></h2><p id="click-instructions"></p><button id="target" type="button"><b data-en="Click here">Кликни тук</b><span><span data-en="This button only increases the counter">Бутонът само увеличава брояча</span></span></button><div class="input-check" role="region" aria-label="Получен вход" data-en-aria="Received input"><strong id="pointer-position"></strong><span id="input-counts"></span><small data-en="These count input anywhere on this page, including outside the target. Nothing is saved.">Тук се брои входът навсякъде в страницата, включително извън целта. Нищо не се записва.</small></div></section>
+      <section><h2><span data-en="2 / Scroll">2 / Скрол</span></h2><p><span data-en="Point inside the box. Raise your index and middle fingers, keep the others curled, then move your hand up/down.">Посочи вътре в полето. Вдигни показалец и среден пръст, свий останалите и движи ръката нагоре/надолу.</span></p><div id="scroll-area" tabindex="0" role="region" aria-label="Тестова зона за скрол" data-en-aria="Test scroll area"><div class="scroll-card"><span data-en="START ↓">НАЧАЛО ↓</span><small><span data-en="Move the two fingers up and down.">Движи двата пръста нагоре и надолу.</span></small></div><div class="scroll-card"><span data-en="FIRST MARKER">ПЪРВИ МАРКЕР</span><small><span data-en="The visible content has moved.">Видимото съдържание вече се е преместило.</span></small></div><div class="scroll-card"><span data-en="SECOND MARKER">ВТОРИ МАРКЕР</span><small><span data-en="Reverse direction and return to the top.">Смени посоката и се върни към началото.</span></small></div><div class="scroll-card"><span data-en="THIRD MARKER">ТРЕТИ МАРКЕР</span></div><div class="scroll-card"><span data-en="END ↑">КРАЙ ↑</span></div></div></section>
+    </div>
+    <section class="switch"><h2><span data-en="3 / Switch apps">3 / Смяна на приложения</span></h2><p><span data-en="Show an open palm, hold briefly, then swipe left/right. Relax your fingers between attempts. Apps are visited alphabetically. Return here after testing and press Escape.">Покажи отворена длан, задръж за кратко и плъзни наляво/надясно. Отпусни пръстите между опитите. Приложенията се обхождат по азбучен ред. След пробата се върни тук и натисни Escape.</span></p><p class="muted"><span data-en="Losing focus alone does not prove an app switch. We check it alongside the visible app and controller status.">Загубата на фокус сама по себе си не доказва смяна на приложение. Проверяваме я заедно с видимото приложение и статуса на контролера.</span></p></section>
+    <section class="journal"><h2><span data-en="Observed events">Наблюдавани събития</span></h2><ol id="events"></ol></section>
+    <footer><span data-en="This page does not record or upload results. Reloading resets the counters; changing language does not. Mouse/trackpad input also counts, so leave them alone during the trial.">Тази страница няма запис, изпращане на резултати или действия извън тестовите полета. Броячите се нулират при презареждане. Събития от мишка/тракпад също се броят — затова ги остави по време на пробата.</span></footer>
+  </main>
+</body>
+</html>

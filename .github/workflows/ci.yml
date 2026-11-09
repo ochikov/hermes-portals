@@ -1,0 +1,52 @@
+name: Source validation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  companion:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - run: python3 scripts/check_release.py
+      - run: ./scripts/setup.sh
+      - run: uv pip install --python .venv/bin/python --require-hashes -r requirements-dev.lock
+      - run: .venv/bin/python -m pytest -q
+      - run: npm test
+      - name: Compile native source and test recognition without OS input
+        if: runner.os == 'macOS'
+        run: ./scripts/build_macos.sh
+
+  hermes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HERMES_HOME: ${{ runner.temp }}/portals-hermes-home
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          path: plugin
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: NousResearch/hermes-agent
+          ref: 2bd378ed1b8d6bf2192cb26e0a55ff3091e6bd19
+          path: hermes-validator
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
+      - name: Install Hermes 0.23.0 from its committed lock
+        run: uv sync --project hermes-validator --frozen --no-dev --python 3.14
+      - name: Validate the clean plugin source before downloading assets
+        run: hermes-validator/.venv/bin/hermes plugins validate "$GITHUB_WORKSPACE/plugin" --install-deps

@@ -1,0 +1,23 @@
+.venv/
+node_modules/
+web/vendor/
+.runtime/
+__pycache__/
+.pytest_cache/
+*.pyc
+test-results/
+playwright-report/
+native/macos/build/
+
+# Local state, credentials, macOS metadata and unpublished submission material
+.DS_Store
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-*
+*.log
+*.dmg
+*.zip
+*.app/
+*.dSYM/
