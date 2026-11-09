@@ -78,6 +78,14 @@ that resume intent. An outline alone does not mean input is armed.
 
 ## Gestures
 
+To see the motions before trying real input, open **See the Mac gestures** in
+the Portals page, or `/static/hand-demo.html?gesture=tap`. Gesture Lab animates an
+illustrated hand with joint landmarks. Select a gesture and play it, pause,
+scrub or choose a numbered step. It has English/Bulgarian instructions and
+stops playback when hidden. Reduced-motion users get still poses by default.
+The guide requests no camera permission and sends no input; the illustrations
+are not recordings or evidence of live gesture accuracy.
+
 For a physical trial, open `/static/gesture-test.html` on the localhost Portals
 companion. It has an inert click target, a scrollable panel and visible counters.
 Start Mac control, return to the test page and put the mouse/trackpad aside.

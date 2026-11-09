@@ -14,6 +14,15 @@ On macOS, an optional native controller also turns hand gestures into pointer
 movement, clicks, scrolling and switching running apps. It continues tracking
 while another app is in front. [Mac setup and gesture guide](docs/MAC_CONTROL.md).
 
+**Learn the gestures first.** Open **Watch the hand demo** beside the camera to
+try Gesture Lab: an illustrated 21-joint hand demonstrates phone handoff, index
+tapping, scrolling and app switching. Play, pause, scrub or jump between steps;
+instructions are in English and Bulgarian. The guide runs without a camera or
+paired device and never sends input or transfers real content. It is explicitly
+labelled **Simulation**, separate from live tracking.
+
+[Preview the illustrated hand guide](docs/screenshots/hand-demo.png).
+
 ![Portals diagram and saved-tool library](docs/screenshots/laptop-diagram.png)
 
 **Version 0.3.0 · MIT · community plugin · trusted-LAN prototype.**

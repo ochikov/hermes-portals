@@ -10,13 +10,21 @@ not part of the release.
 | --- | --- |
 | Clean source setup, pinned companion dependencies and MediaPipe assets | Passed on macOS Apple silicon |
 | Python suite in that clean environment | 22 passed |
-| JavaScript suite | 8 passed |
+| JavaScript suite, including Gesture Lab | 10 passed |
 | Swift compile and pure recognizer tests from the clean source | 212 assertions passed; no OS events |
 | Hermes 0.20.5 Plugin Doctor | Discovery, import and two tool registrations passed |
 | Hermes 0.23.0 catalog validator preflight | 15 checks passed; safe; no warnings |
 
 The Python run reports a Starlette/httpx test-client deprecation warning.
 It does not fail the tests. Linux is covered by CI, not a local hardware trial.
+
+Gesture Lab's illustrated handoff sequence is fed into the actual browser
+gesture recognizer by a test and produces exactly one transfer signal. A second
+test checks that all four illustrated hands remain finite and within the preview.
+These tests do not send a transfer or measure a physical hand. Browser checks
+cover the four modes, numbered steps, English/Bulgarian, replay and a 390-pixel
+mobile viewport without horizontal overflow. This guide has no camera or input
+API and is not a substitute for the physical trials below.
 
 ## Automated coverage
 

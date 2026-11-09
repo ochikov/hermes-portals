@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Hermes Portals · Gesture Lab</title>
+  <link rel="stylesheet" href="/static/hand-demo.css">
+  <script type="module" src="/static/hand-demo.mjs"></script>
+</head>
+<body>
+  <main class="lab">
+    <header class="lab-header">
+      <a class="brand" href="/" aria-label="Hermes Portals"><span>◒</span> HERMES <b>PORTALS</b></a>
+      <div class="header-tools"><span class="simulation-badge" data-copy="badge">SIMULATION</span><label><span class="sr-only">Language / Език</span><select id="language" aria-label="Language / Език"><option value="en">English</option><option value="bg">Български</option></select></label></div>
+    </header>
+    <section class="intro">
+      <div><p class="eyebrow">GESTURE LAB / 01</p><h1 data-copy="title">A little motion.<br>A new way to move.</h1></div>
+      <p class="intro-note" data-copy="intro">Follow the illustrated hand. Learn the movement before you turn on your camera.</p>
+    </section>
+    <nav class="mode-tabs" aria-label="Gesture examples" id="modes">
+      <button type="button" data-mode="transfer" aria-pressed="true"><span>↗</span><b data-copy="transfer">Send to phone</b></button>
+      <button type="button" data-mode="tap" aria-pressed="false"><span>◎</span><b data-copy="tap">Index tap</b></button>
+      <button type="button" data-mode="scroll" aria-pressed="false"><span>↕</span><b data-copy="scroll">Scroll</b></button>
+      <button type="button" data-mode="switch" aria-pressed="false"><span>⇄</span><b data-copy="switch">Switch apps</b></button>
+    </nav>
+    <section class="demo-card" aria-label="Illustrated gesture demonstration">
+      <div class="demo-heading"><div><span class="eyebrow" id="mode-kicker"></span><h2 id="mode-title"></h2></div><span class="mode-number" aria-hidden="true">01—04</span></div>
+      <div class="demo-layout">
+        <div class="stage-wrap"><canvas id="stage" width="1120" height="660" role="img" aria-label="Animated illustrated hand with joint landmarks"></canvas><div class="stage-label"><span class="stage-dot"></span><span data-copy="illustration">ILLUSTRATED HAND · CAMERA OFF</span></div><div class="stage-footer"><span data-copy="landmarks">21 illustrated joints</span><span id="pose-label"></span></div></div>
+        <aside class="explanation"><span class="eyebrow" id="step-count"></span><h3 id="step-title"></h3><p id="step-description"></p><div class="result-card"><span data-copy="resultLabel">DEMO RESULT</span><strong id="result-title"></strong><p id="result-detail"></p></div><p class="mode-note" id="mode-note"></p></aside>
+      </div>
+      <div class="steps" id="steps" role="group" aria-label="Jump to a step"></div>
+      <div class="playback"><button id="play" type="button" class="play-button">▶ <span data-copy="play">Play demo</span></button><label class="timeline"><span class="sr-only" data-copy="timeline">Animation position</span><input id="timeline" type="range" min="0" max="6.8" step="0.01" value="0" aria-label="Animation position"></label><span id="time" class="time">0.0 / 6.8 s</span><button id="replay" type="button" class="replay" data-copy="replay">↺ Replay</button></div>
+      <p class="motion-note" id="motion-note" hidden data-copy="motionNote">Reduced motion is on. Select a numbered step to view a still pose, or choose Play demo.</p>
+    </section>
+    <footer><p data-copy="disclaimer">This is a visual guide. It does not access your camera, recognize gestures, transfer content or control your Mac.</p><a href="/" data-copy="back">← Back to Portals</a></footer>
+  </main>
+</body>
+</html>
